@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Flex Panels 💪</title>
+  <title>Best 🏈 Ever</title>
   <link href='https://fonts.googleapis.com/css?family=Amatic+SC' rel='stylesheet' type='text/css'>
 </head>
 <body>
@@ -14,6 +14,17 @@
       font-size: 20px;
       font-weight: 200;
     }
+    a {
+        text-transform: uppercase;
+      font-family: 'Amatic SC', cursive;
+      text-shadow: 0 0 4px rgba(0, 0, 0, 0.72), 0 0 14px rgba(0, 0, 0, 0.45);
+      font-size: 3.5em;
+      text-decoration: none;
+      color: white;
+    }
+    a:visited {
+  text-decoration: none;
+}
     
     body {
       margin: 0;
@@ -52,22 +63,28 @@
     }
 
     .panel1 { background-image:url(https://images5.alphacoders.com/120/1209185.jpg); }
-    .panel2 { background-image:url(https://www.nicepng.com/png/detail/156-1569028_nfl-cuts-news-and-images-carbontek-football-shoulder.png/1500x1500); }
-    .panel3 { background-image:url(https://images.unsplash.com/photo-1465188162913-8fb5709d6d57?ixlib=rb-0.3.5&q=80&fm=jpg&crop=faces&cs=tinysrgb&w=1500&h=1500&fit=crop&s=967e8a713a4e395260793fc8c802901d); }
-    .panel4 { background-image:url(https://source.unsplash.com/ITjiVXcwVng/1500x1500); }
-    .panel5 { background-image:url(https://source.unsplash.com/3MNzGlQM7qs/1500x1500); }
+    .panel2 { background-image:url(https://cdn.wallpapersafari.com/63/92/YpSZku.jpg); }
+    .panel3 { background-image:url(https://static.clubs.nfl.com/image/private/f_auto/chiefs/whcr4nls9ykcptzgwvpd); }
+    .panel4 { background-image:url(https://atlantablackstar.com/wp-content/uploads/2015/04/adrian.jpg); }
+    .panel5 { background-image:url(https://upload.wikimedia.org/wikipedia/commons/thumb/1/10/Bill_Belichick_2019_crop.jpg/1200px-Bill_Belichick_2019_crop.jpg); }
 
     /* Flex Children */
     .panel > * {
       margin: 0;
       width: 100%;
       transition: transform 0.5s;
-      border: 1px solid red;
+      /* border: 1px solid red; */
       flex: 1 0 auto;
       display: flex;
       justify-content: center;
       align-items: center;
     }
+
+    .panel > *:first-child {transform: translateY(-100%);}
+    .panel.open-active > *:first-child {transform: translateY(0);}
+    .panel > *:last-child {transform: translateY(100%);}
+    .panel.open-active > *:last-child {transform: translateY(0);}
+
 
     .panel p {
       text-transform: uppercase;
@@ -82,6 +99,7 @@
 
     .panel.open {
       font-size: 40px;
+      flex: 5;
     }
 
   </style>
@@ -90,33 +108,45 @@
   <div class="panels">
     <div class="panel panel1">
       <p>The Best</p>
-      <p>Quarterback</p>
+      <a href="https://www.pro-football-reference.com/players/B/BradTo00.htm">Quarterback</a>
       <p>Ever</p>
     </div>
     <div class="panel panel2">
       <p>The Best</p>
-      <p>Wide Reciever</p>
+      <a href="https://www.pro-football-reference.com/players/R/RiceJe00.htm">Wide Reciever</a>
       <p>Ever</p>
     </div>
     <div class="panel panel3">
       <p>The Best</p>
-      <p>Tight End</p>
+      <a href="https://www.pro-football-reference.com/players/G/GonzTo00.htm">Tight End</a>
       <p>Ever</p>
     </div>
     <div class="panel panel4">
       <p>The Best</p>
-      <p>Runningback</p>
+      <a href="https://www.pro-football-reference.com/players/P/PeteAd01.htm">Runningback</a>
       <p>Ever</p>
     </div>
     <div class="panel panel5">
       <p>The Best</p>
-      <p>Coach</p>
+      <a href="https://en.wikipedia.org/wiki/Bill_Belichick">Coach</a>
       <p>Ever</p>
     </div>
   </div>
 
   <script>
+    const panels = document.querySelectorAll('.panel');
 
+    function toggleOpen(){
+        this.classList.toggle('open')
+    }
+    function toggleActive(e){
+        if (e.propertyName.includes('flex')){
+            this.classList.toggle('open-active')
+        }
+    }
+
+    panels.forEach(panel => panel.addEventListener('click', toggleOpen));
+    panels.forEach(panel => panel.addEventListener('transitionend', toggleActive));
   </script>
 
 
